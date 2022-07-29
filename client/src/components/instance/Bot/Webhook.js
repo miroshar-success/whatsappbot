@@ -39,7 +39,7 @@ const WebHook = ({ setWebhook, instance: { keyword, loading },data : {bots} }) =
                     name="basic"
                     layout='vertical'
                     onFinish={onFinish}
-                    initialValues={{webhook : "localhost:3000/wa/bot/webhook"}}
+                    initialValues={{webhook : `localhost:5000/wa/bot/webhook`}}
                     autoComplete="off"
                 >
                     <Form.Item
