@@ -228,6 +228,9 @@ router.post("/makePublicorPrivate",auth,async (req,res) => {
     const {key} = req.user;
     console.log(instance_id,key);
     const public = await WaInstance.findOne({id : instance_id,user_id : key});
+    if (!public) {
+        return res.status(400).json({msg : "No data"})
+    }
     const newPublic = 1 - public.public;
     const up = await WaInstance.findOneAndUpdate({id : instance_id,user_id : key},{$set : {public : newPublic}});
     res.json({msg : "success"});

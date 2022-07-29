@@ -17,7 +17,6 @@ const InstanceBot = ({setBotsByInstance,data : {bots,loading}}) => {
     const {instance_id} = useParams();
     const [form] = Form.useForm();
     const navigate = useNavigate();
-    console.log(bots);
     const [pagination, setPagination] = useState({
         current: 1,
         pageSize: 10,

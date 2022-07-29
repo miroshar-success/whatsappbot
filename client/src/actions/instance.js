@@ -23,7 +23,7 @@ export const getInstances = () => async (dispatch) => {
             type : GET_INSTANCE,
             payload : res.data
         })
-        message.success("Success!")
+        // message.success("Success!")
 
     } catch (error) {
         dispatch({
@@ -55,7 +55,7 @@ export const getKeyWord = (instance_id,id) => async (dispatch) => {
             type : GET_KEYWORD,
             payload : res.data
         })
-        message.success("Success!")
+        // message.success("Success!")
 
     } catch (error) {
         dispatch({
@@ -133,7 +133,7 @@ export const getLogs = (instance_id) => async (dispatch) => {
             payload : res.data
         })
 
-        message.success("Success!")
+        // message.success("Success!")
 
     } catch (error) {
         dispatch({
@@ -159,17 +159,20 @@ export const deleteInstance = (instance_id) => async (dispatch) => {
 
 export const makePublic = (instance_id) => async (dispatch) => {
     try {
-        console.log(instance_id);
         const res = await api.post("/instances/makePublicorPrivate",{instance_id});
         dispatch({
             type : MAKE_PUBLIC
         })
+        dispatch(getInstances(instance_id))
         message.success("Success!")
 
     } catch (error) {
+        
         dispatch({
             type : INSTANCE_ERROR
         })
+        message.error("Error!")
+
     }
 }
 
