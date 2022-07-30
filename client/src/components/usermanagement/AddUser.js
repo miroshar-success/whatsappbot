@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, Navigate,useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {Form,Button,Row,Col,Input,Table,Typography,Checkbox,DatePicker,message} from 'antd';
+import {Form,Button,Row,Col,Input,Table,Typography,Checkbox,DatePicker,message,Space} from 'antd';
 import {columns} from './data';
 import {insertUser} from '../../actions/user';
 
@@ -38,81 +38,90 @@ function AddUser({insertUser}) {
                     <Title level={5}>USER INFORMATION</Title>
                 </Col>
             </Row>
-            <Form
-                name="basic"
-                layout='vertical'
-                initialValues={{ remember: true }}
-                onFinish={onFinish}
-                autoComplete="off"
-                >
-                <Form.Item
-                    label="Name"
-                    name="name"
-                    rules={[{ required: true, message: 'Please input your name!' }]}
-                >
-                    <Input />
-                </Form.Item>
-                <Form.Item
-                    label="Email"
-                    name="email"
-                    rules={[
-                    {
-                        type: 'email',
-                        message: 'The input is not valid E-mail!',
-                    },
-                    {
-                        required: true,
-                        message: 'Please input your E-mail!',
-                    },
-                    ]}
-                >
-                    <Input />
-                </Form.Item>
-
-                <Form.Item
-                    label="Expire Date"
-                    name="expiry"
-                    rules={[{ required: true, message: 'Please input expire date!' }]}
-                >
-                    <DatePicker style={{width : "100%"}} />
-                </Form.Item>
-
-                <Form.Item
-                    label="Password"
-                    name="password"
-                    rules={[{ required: true, message: 'Please input your password!' }]}
-                >
-                    <Input.Password />
-                </Form.Item>
-
-                <Form.Item
-                    name="confirm"
-                    label="Confirm Password"
-                    dependencies={['password']}
-                    hasFeedback
-                    rules={[
-                    {
-                        required: true,
-                        message: 'Please confirm your password!',
-                    },
-                    ({ getFieldValue }) => ({
-                        validator(_, value) {
-                        if (!value || getFieldValue('password') === value) {
-                            return Promise.resolve();
-                        }
-                        return Promise.reject(new Error('The two passwords that you entered do not match!'));
+            <Row>
+                <Col span={24}>
+                    <Form
+                    name="basic"
+                    layout='vertical'
+                    initialValues={{ remember: true }}
+                    onFinish={onFinish}
+                    autoComplete="off"
+                    >
+                    <Form.Item
+                        label="Name"
+                        name="name"
+                        rules={[{ required: true, message: 'Please input your name!' }]}
+                    >
+                        <Input />
+                    </Form.Item>
+                    <Form.Item
+                        label="Email"
+                        name="email"
+                        rules={[
+                        {
+                            type: 'email',
+                            message: 'The input is not valid E-mail!',
                         },
-                    }),
-                    ]}
-                >
-                    <Input.Password />
-                </Form.Item>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit">
-                    Submit
-                    </Button>
-                </Form.Item>
-                </Form>
+                        {
+                            required: true,
+                            message: 'Please input your E-mail!',
+                        },
+                        ]}
+                    >
+                        <Input />
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Expire Date"
+                        name="expiry"
+                        rules={[{ required: true, message: 'Please input expire date!' }]}
+                    >
+                    <Row>
+                    <DatePicker style={{width : "100%"}} />
+
+                    </Row>
+
+                    </Form.Item>
+
+                    <Form.Item
+                        label="Password"
+                        name="password"
+                        rules={[{ required: true, message: 'Please input your password!' }]}
+                    >
+                        <Input.Password />
+                    </Form.Item>
+
+                    <Form.Item
+                        name="confirm"
+                        label="Confirm Password"
+                        dependencies={['password']}
+                        hasFeedback
+                        rules={[
+                        {
+                            required: true,
+                            message: 'Please confirm your password!',
+                        },
+                        ({ getFieldValue }) => ({
+                            validator(_, value) {
+                            if (!value || getFieldValue('password') === value) {
+                                return Promise.resolve();
+                            }
+                            return Promise.reject(new Error('The two passwords that you entered do not match!'));
+                            },
+                        }),
+                        ]}
+                    >
+                        <Input.Password />
+                    </Form.Item>
+                    <Form.Item>
+                        <Button type="primary" htmlType="submit">
+                        Submit
+                        </Button>
+                    </Form.Item>
+                    </Form>
+                </Col>
+            </Row>
+            
                 </div>
         </>
      );

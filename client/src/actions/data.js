@@ -12,7 +12,7 @@ export const getWadata = () => async (dispatch) => {
             type : GET_WADATA,
             payload : res.data
         })
-        message.success("Success!")
+        // message.success("Success!")
     } catch (error) {
         dispatch({
             type : WADATA_ERROR

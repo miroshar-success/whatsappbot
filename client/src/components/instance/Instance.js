@@ -157,7 +157,7 @@ const Instance = ({getInstances,makePublic,deleteInstance,instance : {instances,
                 </Col>
                 <Col span={4}>
                   {
-                      record.public ? <Button value="public" onClick={() => handlePublic(record.id) }>Make Private</Button> : <Button value="private" type='primary' onClick={() => handlePublic(record.id)}>Make Public</Button>
+                      record.public ? <Button value="public" onClick={() => handlePublic(record.id) }  type='primary' danger>Make Private</Button> : <Button value="private" onClick={() => handlePublic(record.id)}>Make Public</Button>
                   }
                 </Col>
               </Row>  
