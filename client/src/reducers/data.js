@@ -9,7 +9,9 @@ import {
     WABOT_DATA,
     INSTANCE_SETTING,
     INSERT_SOURCEKEY,
-    DELETE_SOURCEKEY
+    DELETE_SOURCEKEY,
+    ADD_WABOT,
+    ERROR_WABOT
 } from '../actions/types';
     
 const initialState = {
@@ -77,6 +79,11 @@ function WaDataReducer(state = initialState, action) {
                 loading : false
             }
         case DELETE_SOURCEKEY:
+            return {
+                ...state,
+                loading : false
+            }
+        case ADD_WABOT:
             return {
                 ...state,
                 loading : false

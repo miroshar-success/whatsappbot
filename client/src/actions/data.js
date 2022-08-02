@@ -1,7 +1,7 @@
 import api from '../utils/api';
 import { setAlert } from './alert';
 import {
-  GET_WADATA,INSERT_WADATA,WADATA_ERROR,DELETE_WADATA, GET_TRAINDATA, TRAIN_ERROR, GET_DATA, DATA_ERROR, EDIT_DATA, WABOT_DATA, INSTANCE_SETTING, INSERT_SOURCEKEY, DELETE_SOURCEKEY, UPDATE_WABOT
+  GET_WADATA,INSERT_WADATA,WADATA_ERROR,DELETE_WADATA, GET_TRAINDATA, TRAIN_ERROR, GET_DATA, DATA_ERROR, EDIT_DATA, WABOT_DATA, INSTANCE_SETTING, INSERT_SOURCEKEY, DELETE_SOURCEKEY, UPDATE_WABOT, ADD_WABOT, ERROR_WABOT
 } from './types';
 import {message} from 'antd';
 
@@ -194,5 +194,20 @@ export const updateWabot = (formdata) => async (dispatch) => {
         })
         message.error("Error!")
 
+    }
+}
+
+export const addWabot = (formdata) => async (dispatch) => {
+    try {
+        const res = await api.post("/datas/addwabot",formdata);
+        dispatch({
+            type : ADD_WABOT
+        })
+        dispatch(getBotsByInstance(formdata.instance_id));
+        message.success("Success!")
+    } catch (error) {
+        dispatch({
+            type : ERROR_WABOT
+        })
     }
 }

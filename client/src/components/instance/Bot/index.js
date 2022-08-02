@@ -14,6 +14,7 @@ import SourceKey from './SourceKey';
 import Default from './Default';
 import SourceKeys from './SourceKeys';
 import Webhook from './Webhook';
+import AddKeyWord from './AddKeyWord';
 
 const Bot = ({getBotsByInstance,data : {bots,loading}}) => {
     const {instance_id} = useParams();
@@ -40,7 +41,7 @@ const Bot = ({getBotsByInstance,data : {bots,loading}}) => {
          <InstanceBot/>
          <SourceKey/>
          {in_ourceKeywords  ? <SourceKeys/> : <></>}
-
+         <AddKeyWord/>
          <Default/>
         </>
      );

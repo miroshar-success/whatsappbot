@@ -34,6 +34,9 @@ export const INSERT_WADATA = "INSERT_WADATA";
 export const GET_WADATA = "GET_WADATA";
 export const WADATA_ERROR = "WADATA_ERROR";
 export const DELETE_WADATA = "DELETE_WADATA";
+export const ADD_WABOT = "ADD_WABOT";
+export const ERROR_WABOT = "ERROR_WABOT";
+
 
 export const GET_INSTANCE = "GET_INSERT";
 export const INSTANCE_ERROR = "INSTANCE_ERROR";

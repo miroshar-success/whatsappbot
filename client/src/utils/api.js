@@ -4,7 +4,8 @@ import { LOGOUT } from '../actions/types';
 
 // Create an instance of axios
 const api = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: 'http://admin.fbmnow.com/botapi',
+  // baseURL : "http://localhost:5000/botapi",
   headers: {
     'Content-Type': 'application/json'
   }
