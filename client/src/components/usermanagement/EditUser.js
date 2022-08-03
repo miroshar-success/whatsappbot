@@ -25,7 +25,7 @@ function EditUser({getUser,editUser,user : {currentuser,loading}}) {
     form.setFieldsValue({
         name : currentuser.name,
         email : currentuser.email,
-        expiry : moment(currentuser.expiry,"YYYY-MM-DD") 
+        expiry : currentuser.expiry ? moment(currentuser.expiry,"YYYY-MM-DD") : ""
     })
     return ( 
         <>

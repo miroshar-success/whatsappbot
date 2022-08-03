@@ -229,7 +229,8 @@ router.post("/updatewabot",auth,async (req,res) => {
 
 router.post("/addwabot",auth,async (req,res) => {
     try {
-        const {instance_id,keyword,message_type,message} = req.body;
+        let {instance_id,keyword,message_type,message,link,linktitle,file,number,messagetoagent,messagetouser,filename} = req.body;
+        let file_mime_type = "";
         const {key} = req.user;
         const past = await WaBot.aggregate([
             {
@@ -244,14 +245,38 @@ router.post("/addwabot",auth,async (req,res) => {
         const newId = (past[0]? past[0].maxQ : 0) * 1 + 1;
         const check = await WaInstance.findOne({user_id: key,id : instance_id});
         const in_id = check.in_id;
+        switch (message_type) {
+            case "Text":
+                message_type = "Text";
+                break;
+            case "File":
+                message_type = "File or Photo";
+                break;
+            case "Link":
+                message = linktitle  + "+" + link;
+                message_type = "Link";
+                break
+            case "Forward":
+                message = number;
+                file = messagetouser;
+                file_mime_type = messagetoagent
+                message_type = "Forward To Agent";
+                break;
+            default:
+                break;
+        }
         const newWabot = new WaBot({
             id : newId,
             instance_id : instance_id,
             in_id : in_id,
             keyword : keyword,
-            message : message,
+            message : message ,
             message_type : message_type,
+            file_mime_type : file_mime_type,
+            filecontent : file ? file : ""
+
         });
+        console.log("231231")
         await newWabot.save();
         res.json({msg : 'success'});
     } catch (error) {

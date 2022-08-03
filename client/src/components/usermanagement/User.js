@@ -2,7 +2,7 @@ import React, { useState,useEffect,useRef } from 'react';
 import { Link, Navigate ,useNavigate} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import {Form,Button,Row,Col,Input,Table,Card,Space} from 'antd';
+import {Form,Button,Row,Col,Input,Table,Card,Space, Avatar} from 'antd';
 import Highlighter from 'react-highlight-words';
 // import {columns} from './data';
 import {
@@ -124,7 +124,7 @@ const UserManagement = ({getUsers,user : {users,loading}}) => {
           title: 'Profile',
           sorter: true,
           width: '10%',
-          render : (_,record) => <><img src={record.avatar} width="80"/></>,
+          render : (_,record) => <><Avatar src={record.avatar} width="80"/></>,
           
         },
         {

@@ -142,7 +142,7 @@ router.post("/storeMessageTask",auth,async (req,res) => {
                 }
             }
         ]);
-        let newId = (past[0]? past[0].maxQ : 0) * 1 + 1;
+        let newMesId = (past[0]? past[0].maxQ : 0) * 1 + 1;
         const newWaMessage = new WaMessageTask({
             id : newId,
             user_id : key,
@@ -172,7 +172,7 @@ router.post("/storeMessageTask",auth,async (req,res) => {
             id : newId,
             user_id : key,
             instance_id : instance_id,
-            task_id : check.id,
+            task_id : newMesId,
             receiver : csvdata[i][0],
             message : tempmess[j]
            })
@@ -226,12 +226,11 @@ router.post("/exportNum",auth,async (req,res) => {
 router.post("/makePublicorPrivate",auth,async (req,res) => {
     const {instance_id} = req.body;
     const {key} = req.user;
-    console.log(instance_id,key);
     const public = await WaInstance.findOne({id : instance_id,user_id : key});
     if (!public) {
         return res.status(400).json({msg : "No data"})
     }
-    const newPublic = 1 - public.public;
+    const newPublic = 1 - (public.public == 1 ? public.public : 0);
     const up = await WaInstance.findOneAndUpdate({id : instance_id,user_id : key},{$set : {public : newPublic}});
     res.json({msg : "success"});
 })

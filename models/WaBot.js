@@ -28,6 +28,9 @@ const WaBotSchema = new mongoose.Schema({
   },
   skid : {
     type : Number
+  },
+  filecontent : {
+    type : String
   }
   
 });

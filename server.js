@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require("cors")
 const connectDB = require('./config/db');
 const dotenv = require('dotenv');
+const bodyParser = require("body-parser");
 const path = require('path');
 
 const app = express();
@@ -10,22 +11,24 @@ const app = express();
 connectDB();
 
 // Init Middleware
-app.use(express.json());
-
+// app.use(express.json());
 app.use(cors());
 
+// Body parser middleware
 
+app.use(bodyParser.json({limit: '100mb'}));
+app.use(bodyParser.urlencoded({ extended: true,limit: '100mb',parameterLimit: 50000  }));
 
 dotenv.config();
 
 // Define Routes
-app.use('/api/users', require('./routes/api/users'));
-app.use('/api/auth', require('./routes/api/auth'));
-app.use('/api/profile', require('./routes/api/profile'));
-app.use('/api/posts', require('./routes/api/posts'));
-app.use('/api/datas', require('./routes/api/datas'));
-app.use('/api/instances', require('./routes/api/instance'));
-app.use("/wa/bot",require("./routes/api/webhook"));
+app.use('/botapi/users', require('./routes/botapi/users'));
+app.use('/botapi/auth', require('./routes/botapi/auth'));
+app.use('/botapi/profile', require('./routes/botapi/profile'));
+app.use('/botapi/posts', require('./routes/botapi/posts'));
+app.use('/botapi/datas', require('./routes/botapi/datas'));
+app.use('/botapi/instances', require('./routes/botapi/instance'));
+app.use("/wa/bot",require("./routes/botapi/webhook"));
 
 
 // Serve static assets in production

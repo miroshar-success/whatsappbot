@@ -39,7 +39,6 @@ const SetMessage = ({storeMessageTask,getMessageTask,getLogs,instance : {logs,ta
       clearFilters();
       setSearchText('');
     };
-  
     const getColumnSearchProps = (dataIndex) => ({
       filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
         <div
@@ -142,8 +141,8 @@ const SetMessage = ({storeMessageTask,getMessageTask,getLogs,instance : {logs,ta
         values.instance_id = instance_id;
         values.csvdata = csvdata;
         storeMessageTask(values);
-        getMessageTask(instance_id);
-        getLogs(instance_id)
+        // getMessageTask(instance_id);
+        // getLogs(instance_id);
     } 
 
 

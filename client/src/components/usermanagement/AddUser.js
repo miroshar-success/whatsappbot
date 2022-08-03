@@ -16,7 +16,6 @@ function AddUser({insertUser}) {
     },[insertUser]);
 
     const onFinish = (values) => {
-        console.log(values);
         insertUser(values);
         message.success("Successly Insert!")
     };
@@ -74,7 +73,6 @@ function AddUser({insertUser}) {
                     <Form.Item
                         label="Expire Date"
                         name="expiry"
-                        rules={[{ required: true, message: 'Please input expire date!' }]}
                     >
                     <Row>
                     <DatePicker style={{width : "100%"}} />

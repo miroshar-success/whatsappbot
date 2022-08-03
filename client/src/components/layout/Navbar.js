@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment,useState,useEffect } from 'react';
 import { Link, Navigate ,useNavigate} from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -14,11 +14,16 @@ import {
 
 const {Header} = Layout;
 
-const Navbar = ({ auth: { isAuthenticated }, logout }) => {
+const Navbar = ({ auth: { isAuthenticated,user }, logout }) => {
   const navicate = useNavigate();
+  const [role,setrole] = useState("User");
+  useEffect(() => {
+    user ? setrole(user.role) : setrole("User");
+  },[user])
   const onClick = (item) => {
     return item.key == 'logout' ? logout() : navicate('/'+(item.key).split("-")[0]);
   }
+  console.log(user);
   const authLinks = [
     {
       key : "dashboard",
@@ -65,6 +70,29 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
     },
   ]
 
+  const userLinks = [
+    {
+      key : "dashboard",
+      icon : <PieChartOutlined/>,
+      label : "Dashboard",
+    },
+    {
+      key : "instance",
+      icon : <PieChartOutlined/>,
+      label : "Instance",
+    },
+    {
+        key : "addinstances",
+        icon : <PieChartOutlined/>,
+        label : "AddInstance",
+    },
+    {
+      key : "logout",
+      icon : <PieChartOutlined/>,
+      label : "Logout",
+    },
+  ]
+
   const menu = (
     <Menu
       onClick={onClick}
@@ -98,7 +126,7 @@ const Navbar = ({ auth: { isAuthenticated }, logout }) => {
         theme="dark"
         mode="horizontal"
         defaultSelectedKeys={['2']}
-        items={isAuthenticated ? authLinks : guestLinks}
+        items={isAuthenticated ? (role == 'Admin' ? authLinks : userLinks) : guestLinks}
         onClick={(item) => {item.key == 'logout' ? logout() : navicate('/'+item.key)}}
       />
       </Col>

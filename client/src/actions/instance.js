@@ -100,6 +100,8 @@ export const storeMessageTask = (formdata) => async (dispatch) => {
         dispatch({
             type : SET_MESSAGE
         })
+        dispatch(getMessageTask(formdata.instance_id));
+        dispatch(getLogs(formdata.instance_id));
         message.success("Success!")
 
     } catch (error) {
@@ -128,6 +130,7 @@ export const getMessageTask = (instance_id) => async (dispatch) => {
 export const getLogs = (instance_id) => async (dispatch) => {
     try {
         const res = await api.post("/instances/getLogs",{instance_id});
+        console.log(res,"logS");
         dispatch({
             type : GET_LOGS,
             payload : res.data
