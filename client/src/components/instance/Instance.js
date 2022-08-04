@@ -114,6 +114,7 @@ const Instance = ({getInstances,makePublic,deleteInstance,instance : {instances,
           text
         ),
     });
+    const buttonstyle = {width : "100%"}
     const columns = [
         {
             title : "Id",
@@ -144,16 +145,16 @@ const Instance = ({getInstances,makePublic,deleteInstance,instance : {instances,
             render : (_,record) => <>
               <Row>
                 <Col span={4}>
-                  <Button><Link to={"/"+record.in_id + "/train"}>Train</Link></Button>
+                  <Button style={buttonstyle}><Link to={"/"+record.in_id + "/train"}>Train</Link></Button>
                 </Col>
                 <Col span={4}>
-                  <Button><Link to={"/"+record.id + "/bot"}>Bot</Link></Button>
+                  <Button  style={buttonstyle}><Link to={"/"+record.id + "/bot"}>Bot</Link></Button>
                 </Col>
                 <Col span={4}>
-                  <Button><Link to={"/"+record.id + "/message"}>MessageTask</Link></Button>
+                  <Button style={buttonstyle}><Link to={"/"+record.id + "/message"}>MessageTask</Link></Button>
                 </Col>
                 <Col span={4}>
-                  <Button onClick={() => handleDelete(record.id)}>Delete</Button>
+                  <Button style={buttonstyle} onClick={() => handleDelete(record.id)}>Delete</Button>
                 </Col>
                 <Col span={4}>
                   {

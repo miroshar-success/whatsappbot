@@ -39,8 +39,6 @@ const Bot = ({getBotsByInstance,data : {bots,loading}}) => {
          <Webhook/>
          <General/>
          <InstanceBot/>
-         <SourceKey/>
-         {in_ourceKeywords  ? <SourceKeys/> : <></>}
          <AddKeyWord/>
          <Default/>
         </>

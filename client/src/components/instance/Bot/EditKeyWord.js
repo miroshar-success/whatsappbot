@@ -48,6 +48,9 @@ const EditData = ({ getKeyWord,updateWabot, instance: { keyword, loading } }) =>
                         <Title level={2}>Edit KeyWord</Title>
 
                     </Col>
+                    <Col span={4}>
+                        <Button type="primary"><Link to={"/"+instance_id+"/bot"} >Back to List</Link></Button>
+                    </Col>
                 </Row>
                 <Form
                     name="basic"

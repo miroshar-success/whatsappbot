@@ -31,7 +31,7 @@ const WebHook = ({ setWebhook, instance: { keyword, loading },data : {bots} }) =
             <Card style={{margin : 50}}>
                 <Row>
                     <Col span={20}>
-                        <Title level={2}>Set WebHook({bots.check ? bots.check.label : ""})</Title>
+                        <Title level={2}>Set WebHook ( {bots.check ? bots.check.label : ""} ) </Title>
 
                     </Col>
                 </Row>

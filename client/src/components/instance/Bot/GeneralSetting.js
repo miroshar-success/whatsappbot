@@ -36,7 +36,7 @@ const GeneralSetting = ({editSetting,data : {bots,loading}}) => {
          <Card style={{margin : 50}}>
             <Row>
                 <Col span={20}>
-                    <Title level={2}>General Setting({bots.check ? bots.check.label : ""})</Title>
+                    <Title level={2}>General Setting ( {bots.check ? bots.check.label : ""} ) </Title>
                 </Col>
             </Row>
             <Form
