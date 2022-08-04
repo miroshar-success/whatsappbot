@@ -78,7 +78,7 @@ router.post("/setwebhook",auth,async (req,res) => {
     let checkStauts = await axios.get(check.url+"/status?token="+check.token);
     checkStauts = checkStauts.data;
     if (checkStauts.accountStatus == "authenticated") {
-        let result = await axios.post(check.url+"/webhook?token="+check.token,{webhookUrl : "localhost:3000/wa/bot/webhook"});
+        let result = await axios.post(check.url+"/webhook?token="+check.token,{webhookUrl : process.env.url + "/wa/bot/webhook"});
         console.log(process.env.url);
         //Ignore old mes
         result = await axios.post(check.url+"/settings?token="+check.token,{ignoreOldMessages : true})

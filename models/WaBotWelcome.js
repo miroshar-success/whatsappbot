@@ -49,4 +49,4 @@ const WaBotWelcomeSchema = new mongoose.Schema({
   
 });
 
-module.exports = mongoose.model('wabotwelome', WaBotWelcomeSchema);
+module.exports = mongoose.model('wabotwelcome', WaBotWelcomeSchema);
